@@ -1,0 +1,171 @@
+1.  docker build --> what happens when docker build : 
+	looks for a file call Dockerfile (casessentive) --> D(caps)ockerfile
+	run the appplicaiton current folder becomes the context 
+	.
+	optional  -f anyfile name 
+
+	docker build  .  (current folder is the context folder) in which you shoudl find the Dockerfile
+	note the name has to be the Dockerfile 
+
+2.   How to updgrade  docker engine update  | 
+
+3.   docker cp 
+
+4.  docker is headless: 
+	docker promotes services 
+	services work in background and not in foregrouund or ui 
+	a) C++ / Winforms /Thick PB APi (Widgets) Windows / XWindows // 
+	tomcat/mysql/apache/redis/mongo/iis/..server.server.server = service 
+	All the docker systems are nothing but services and pushed via the tcp/ip stack and layer 
+------------------------------------------------------------------------------------------------------------------
+Syncup job:- 
+Developer 
+For docker a application means Binaries 
+For docker a execution environment means binaries 
+for docker a execution configuration means env variables or configuration files or paths 
+for docker all of the scenarios above are noththing files sytem 
+
+a) Java (jar) 
+b) python (.py) /set py files 
+c) node javascript  set .js files 
+d) go   / set go files 
+e) perl  set pl files 
+---------------------------------
+java / java jdk /re 
+python /pythong 
+node / node binary 
+go /go binary 
+perl /perl 
+------------------------------
+cmd to start this application should be in place 
+------------------------------
+
+docker build files : 
+primary action 
+build a image 
+--------------------------------------------------------
+
+i could download the image 
+i could create a container 
+i could go inside the container 
+i could make changes in the container 
+i could further commit the contianer 
+i could engage the startup script 
+i could conver this in a image tagged what i want 
+
+
+Developer --> commit --> Jenkins/Build tools --> The application is built ---> 
+	where to test application where environment ==> i build a image + application 
+			===> Docker run ===> 
+					test scriopt run the exposed port /selenium /jmeter or any other 
+					scenarios
+	and if everything goes green i docker push image delivery for productio 
+	the production just uises the name:tag to run the same in production ... 
+
+
+
+
+
+
+Any Application in the world in the world of docker is set of binaries... 
+Any Application environment for the world docker is  set of binaries 
+Any Aplication configuration for the world docker is env configs or files 
+
+from  decides what is the application environemtn 
+COPY  decided whar are the set of application / code binaries 
+RUN   Decides if any extra libraies or any dependenceies to be installed 
+CMD   how to run 
+WORKDIR  where to run 
+EXPOSE  what port to be mapped or exposed from the container 
+
+#----> 
+1. 
+
+
+
+
+1. Did you download the zip file from the githup 
+
+wget  https://github.com/nileshdevdas/ibmdocker/archive/master.zip
+
+2. unzip master.zip 
+
+3. you shoudl get ibmdocker-master 
+
+4. cd ibmdocker-master 
+
+5. docker build  . -t <yourid>/<yourimagename>
+
+6. (Test Your Container) 
+   docker run --name <yourcontainername>  -p8383:8181  -d <yourid>/<yourimage>:<yourtag>
+
+7. docker ps and check if the contianer 
+
+8.  open the http://localhost:8383 and check if the page is visible or not 
+
+9.  check for the logs (how to check for the logs ) 
+	docker logs -f <containerName> 
+	docker logs -f <containername>
+10.   Once your activity is done you wish now to do the activity of running the command to 
+	ship your image (build your image is done) 
+	to ship the image ---> you need a dcoker hub account  (you might have tagged ur image ) 
+	docker login 
+11.  docker push  yourid/yourimage:yourtag 
+
+12.  this means you are there on dockerhub 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
