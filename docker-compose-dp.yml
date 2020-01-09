@@ -1,0 +1,13 @@
+version: "3"
+services:
+    tc1:
+        image: tomcat
+        ports:
+         - "8181:8801"
+        depends_on:
+         - "redis"
+        environment:
+            ENV_TYPE: production
+    redis:
+        image: redis
+
