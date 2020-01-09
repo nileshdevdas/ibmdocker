@@ -1,12 +1,10 @@
 version: "3"
 services: 
-    web:
-        image: tomcat
+    nweb:
+        image: nileshvinsys/hwnodeapp
         ports: 
-            - "8989:8080"
-    redis:
-        image: redis
-    nginx:
+            - "8989:8181"
+    nxs:
         image: nginx
-
-
+        ports:
+           - "88:80"
