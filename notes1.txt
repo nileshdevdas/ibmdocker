@@ -1,0 +1,601 @@
+1.  docker build --> what happens when docker build : 
+	looks for a file call Dockerfile (casessentive) --> D(caps)ockerfile
+	run the appplicaiton current folder becomes the context 
+	.
+	optional  -f anyfile name 
+
+	docker build  .  (current folder is the context folder) in which you shoudl find the Dockerfile
+	note the name has to be the Dockerfile 
+
+2.   How to updgrade  docker engine update  | 
+
+3.   docker cp 
+
+4.  docker is headless: 
+	docker promotes services 
+	services work in background and not in foregrouund or ui 
+	a) C++ / Winforms /Thick PB APi (Widgets) Windows / XWindows // 
+	tomcat/mysql/apache/redis/mongo/iis/..server.server.server = service 
+	All the docker systems are nothing but services and pushed via the tcp/ip stack and layer 
+------------------------------------------------------------------------------------------------------------------
+Syncup job:- 
+Developer 
+For docker a application means Binaries 
+For docker a execution environment means binaries 
+for docker a execution configuration means env variables or configuration files or paths 
+for docker all of the scenarios above are noththing files sytem 
+
+a) Java (jar) 
+b) python (.py) /set py files 
+c) node javascript  set .js files 
+d) go   / set go files 
+e) perl  set pl files 
+---------------------------------
+java / java jdk /re 
+python /pythong 
+node / node binary 
+go /go binary 
+perl /perl 
+------------------------------
+cmd to start this application should be in place 
+------------------------------
+
+docker build files : 
+primary action 
+build a image 
+--------------------------------------------------------
+
+i could download the image 
+i could create a container 
+i could go inside the container 
+i could make changes in the container 
+i could further commit the contianer 
+i could engage the startup script 
+i could conver this in a image tagged what i want 
+
+
+Developer --> commit --> Jenkins/Build tools --> The application is built ---> 
+	where to test application where environment ==> i build a image + application 
+			===> Docker run ===> 
+					test scriopt run the exposed port /selenium /jmeter or any other 
+					scenarios
+	and if everything goes green i docker push image delivery for productio 
+	the production just uises the name:tag to run the same in production ... 
+
+
+
+
+
+
+Any Application in the world in the world of docker is set of binaries... 
+Any Application environment for the world docker is  set of binaries 
+Any Aplication configuration for the world docker is env configs or files 
+
+from  decides what is the application environemtn 
+COPY  decided whar are the set of application / code binaries 
+RUN   Decides if any extra libraies or any dependenceies to be installed 
+CMD   how to run 
+WORKDIR  where to run 
+EXPOSE  what port to be mapped or exposed from the container 
+
+#----> 
+1. 
+
+
+
+
+1. Did you download the zip file from the githup 
+
+wget  https://github.com/nileshdevdas/ibmdocker/archive/master.zip
+
+2. unzip master.zip 
+
+3. you shoudl get ibmdocker-master 
+
+4. cd ibmdocker-master 
+
+5. docker build  . -t <yourid>/<yourimagename>
+
+6. (Test Your Container) 
+   docker run --name <yourcontainername>  -p8383:8181  -d <yourid>/<yourimage>:<yourtag>
+
+7. docker ps and check if the contianer 
+
+8.  open the http://localhost:8383 and check if the page is visible or not 
+
+9.  check for the logs (how to check for the logs ) 
+	docker logs -f <containerName> 
+	docker logs -f <containername>
+10.   Once your activity is done you wish now to do the activity of running the command to 
+	ship your image (build your image is done) 
+	to ship the image ---> you need a dcoker hub account  (you might have tagged ur image ) 
+	docker login 
+11.  docker push  yourid/yourimage:yourtag 
+
+12.  this means you are there on dockerhub 
+
+docker tag image   nileshvinsys/myimage 
+
+docker login # skip this step if already logged 
+docker push 
+
+----------------------------------------------------------------------------------------------------------
+what happens if i wish to do a orchestrated build  ?
+docker-compose yaml 
+what if i had 10 container 
+what if container dependencies 
+what if the container needed to be started in some sequence 
+what if the container needed to started in ongo and stopped one go 
+what if i wanted expose ports and i wanted all of theis to be automate 
+
+docker-compose.yml : THis i file allows me to do the orchestration : 
+	----> kompose --> kubernates 
+	-----> docker-swarm init ---> kubeadm init 
+	-----> docker swarm join ---> kubeadm join
+
+version: '3' 
+services:
+    web: 
+       image: tomcat
+       ports:
+	- "8080:8080"
+       volumes: 
+         - .:/code 
+    redis:
+       image:  redis 
+       ports: 
+	 - "5000:500" 
+    nginx: 
+       image:  nginx
+       ports: 
+         - "80:80"
+
+docker-compose up
+	 
+	 
+
+version: "3"
+services: 
+    web:
+        image: tomcat
+        ports: 
+            - "8080:8080"
+    redis:
+        image: redis
+    nginx:
+        image: nginx
+
+
+
+
+
+Questions:- 
+Can i upgrade my kernel : 
+FROM scrach
+
+
+
+
+
+docker-composer
+
+version: "3"
+services:
+   tc1:
+     image:tomcat 
+     ports: 
+       - "8181:8801"
+     depends_on: 
+       - "redis"
+     environment: 
+       env_type: production 
+   redis:
+     image: redis
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+
+
+builder     Manage builds
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  engine      Manage the docker engine
+  image       Manage images
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+
+
+
+
+
+docker images 
+docker 
+
+------------------------------------------------------------------------------------------------------------
+swarm is  docker set of nodes bound together with master node to allow you to control the deployment 
+of the containers and watch its health and decide on which node transparently the docker container starts 
+without being bother of down times of the the docker nodes if the container was running on 1 node and suddenly 
+node goes down you dont have to bother becuase the swarm of the orchestrator will move the service to 
+the other node 	
+
+
+a service cannot be created in docker without it being a swarm 
+a service cannot be scaled up and down unless its a service 
+a serivce cannot be loadblanced unless and untils its swarm 
+
+
+
+
+
+
+
+
+
+Docker swarm and multi node cluster
+
+docker swarm init   # initializsed my cluster 
+# join is ruequried when you have more than one node 
+docker stack deploy <StackName> --compose-file stackfile.yml 
+#my stack gets created 
+docker stack ls 
+docker service ls 
+
+# scale your service 
+docker service scale myservice=3
+
+# watch logs of your services 
+docker service logs -f myservice 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A load balancer ideally should be dynamic / smart 
+in current situation it is not so 1 (Hence i need the kubernetes) 
+
+A Service is  collection of containers-> (Monitorred) replicas/ health 
+A service is not a stack a service is part of the stack 
+
+A stack is what we call as collection services started and grouped together 
+Act of creating mutiple services together and Single
+
+if a application is made up 3 services --> 
+i exprect he who stack to go up i will need to group them 
+i need a single deployment 
+docker stack deployment --> stack --> Services --->  1 type container / Replicas 
+
+Replica --> Copy service (Elastics ) Scale up / scale down 
+
+When we say Service is a collection of containers,
+ does it mean replicas of a single container or group of unique containers.
+
+service ---> 1 type of container not group of different container 
+service a --> 
+
+version: "3" 
+service: 
+   web: 
+     image: nginx 
+     replicas: 3 
+   redis: 
+     image: redis
+     replicas: 2 
+
+i have a feedback -> end of the election -> exit polls --> 
+---> i would saty want only to scale --> feedback --> 
+	scale the number of container feedback 
+0---> login / blog / crm / new / update
+
+# why volumes 
+i have hrms application: 
+people are allowed to upload : the photos , id proofs , documents. marksheets exp
+Installation of MiniKube (How is minikube different from the implementation of Kubernetes) 
+
+1. minikube single node cluster (For development and testing) 
+	A) wget minikube 
+	B) give a execute premission (if onlinux) 
+	C) if on windows you need enable virtualbox/hybervisor
+	d)  minikube start --vm-driver=<yourDriver> 
+
+2.  you would get a single 
+------------------------------------------------------------------------------------------------------------
+ON linux machine for full installation 
+Docker Side(Swarm)				Kubernetes(Cluster)
+1. docker-compose (yml) 			kubernetes dployment file (yml) 
+a) service
+b) container
+c) port 					Same as docker but syntatically different 
+
+staack						pod 
+service						service 
+no namespace					namespace 
+network						loads of network 
+ingrss ip					proxy 
+no lb						automated loadbalancer 
+no dashboard					dashboard 
+plugings (ltd) 					many plugins
+ENgine must be docker 				Alternative engine to docker can be used 
+docker-compose					kompose 
+docker-stack					kubectl pods
+docker-service 					kubectl service
+docker-swarm					kubeadm
+promethues					kubelet 
+
+----------------------------------------------------------------------------------------------------------
+no cockpit					cockpit
+
+
+1. install using minikube 
+a)   wget minikube 
+b)   wget kubectl 
+c)   put both the above in /usr/local/bin
+d)   put  +x permission  
+e)   just  check what is your platoform if linux (non hvm required) 
+	if windows or other (vbox/) 
+f)   minikube start --vm-driver=vbox|none|..... (it create a single node cluster) 
+g)   kubectl run --name='' --image=tomcat  
+h)   kubectl expose  to expose the service 
+i)   ran the pod on the cluster 
+
+Install Kubernates : 
+first i disabled swap 
+swapoff -a
+vi /etc/fstab # the swap partition 
+certain firewall port 
+firewall-cmd --permanent --add-port=6443/tcp
+firewall-cmd --permanent --add-port=2379-2380/tcp
+firewall-cmd --permanent --add-port=10250/tcp
+firewall-cmd --permanent --add-port=10251/tcp
+firewall-cmd --permanent --add-port=10252/tcp
+firewall-cmd --permanent --add-port=10255/tcp
+firewall-cmd --reload
+modprobe br_netfilter
+echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
+
+add the repo docker 
+sudo yum-config-manager \
+    --add-repo \
+    https://download.docker.com/linux/centos/docker-ce.repo
+
+add the repo for kubernetes 
+cat <<EOF > /etc/yum.repos.d/kubernetes.repo
+[kubernetes]
+name=Kubernetes
+baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+EOF
+
+yum install kubeadm docker-ce -y
+
+service kubelet start 
+service docker start 
+chkconfig docker on 
+chkconfig kubelet on 
+
+
+
+
+docker swarm init 
+docker swarm join 
+
+kubeadm init 
+kubeadm join 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
