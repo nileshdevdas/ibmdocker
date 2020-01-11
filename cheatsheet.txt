@@ -1,0 +1,18 @@
+kubectl get nodes
+kubectl apply  -f  <yourfile>
+kubectl get  pods 
+kubectl get  deployments 
+kubectl get  services 
+kubectl get  replicasets 
+kubectl describe pod <yourpod>
+kubectl describe service <yourser
+kubectl describe deployment <yourdep> 
+kubectl edit deployment 
+kubectl expose deployment <yourdep> --type=NodePort 
+kubectl delete -f <yourfile>  # remove the deployment 
+kubectl delete rs <yourset> 
+kubectl delete pod <yourpod> 
+kubectl delete deployment <yourdep> 
+kubectl run <yourdep> --image=yourimage  
+
+-
