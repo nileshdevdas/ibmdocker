@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: daemonapp
+spec:
+  selector:
+    matchLabels:
+      app: daemonapp
+  template:
+    metadata:
+      labels:
+        app: daemonapp
+    spec:
+      containers:
+      - name: test-container
+        image: k8s.gcr.io/busybox
+        command: [ "/bin/sh", "-c", "while true;do wget -q -O- http://www.google.com;done;" ]
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "100m"
+
